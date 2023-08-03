@@ -120,7 +120,11 @@ export default {
       }
     },
     bestLap(row) {
-      return row.slice(1, -2).sort()[0];
+      return (
+        row.slice(1, -2).sort()[0] +
+        " - Tour : " +
+        row.indexOf(row.slice(1, -2).sort()[0])
+      );
     },
     calculateAverageTime(row) {
       const times = row.slice(1, -2);
