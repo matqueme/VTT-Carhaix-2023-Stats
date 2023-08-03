@@ -1,4 +1,4 @@
-# race-project
+# VTT Carhaix 2023 - Statistique
 
 ## Description
 
