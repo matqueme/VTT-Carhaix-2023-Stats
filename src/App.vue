@@ -17,6 +17,16 @@
       ></div>
     </div>
 
+    <div class="text-center text-2xl font-semibold p-6 dark:text-gray-100">
+      Statistiques
+    </div>
+
+    <chart-component :isDark="darkMode" />
+
+    <div class="text-center text-2xl font-semibold p-6 dark:text-gray-100">
+      Résultats
+    </div>
+
     <div class="max-w-screen-lg mx-auto p-6 text-black dark:text-white">
       <div
         class="bg-white shadow-md dark:bg-gray-800 rounded-lg overflow-x-auto"
@@ -77,8 +87,12 @@
 
 <script>
 import { raceData } from "./data.js";
+import ChartComponent from "./components/ChartComponent.vue";
 
 export default {
+  components: {
+    ChartComponent,
+  },
   data() {
     return {
       columns: [
@@ -93,6 +107,20 @@ export default {
       sortColumn: "",
       sortDirection: "asc",
       darkMode: false,
+      chartData: {
+        labels: ["January", "February", "March", "April", "May"],
+        datasets: [
+          {
+            label: "Sales",
+            backgroundColor: "#f87979",
+            data: [40, 20, 30, 10, 50],
+          },
+        ],
+      },
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+      },
     };
   },
   mounted() {
@@ -122,7 +150,7 @@ export default {
     bestLap(row) {
       return (
         row.slice(1, -2).sort()[0] +
-        " - Tour : " +
+        " - Tour " +
         row.indexOf(row.slice(1, -2).sort()[0])
       );
     },
